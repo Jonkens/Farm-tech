@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login Ganadería</title>
+
+<link rel="stylesheet" href="iniciodesecion.Css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- API de Google -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<div class="input-group">
+<i class="fa fa-envelope"></i>
+<input type="email" id="correo" placeholder="Correo electronico">
+</div>
+
+<div class="input-group">
+<i class="fa fa-eye-slash"></i>
+<input type="password" id="password" placeholder="Contraseña">
+<i class="fa fa-eye toggle" onclick="mostrarPassword()"></i>
+</div>
+
+<button onclick="login()">Iniciar sesion</button>
+
+<!-- BOTON GOOGLE -->
+
+<div class="google-btn" onclick="loginGoogle()">
+<img src="https://developers.google.com/identity/images/g-logo.png">
+Iniciar sesión con Google
+</div>
+
+<div class="forgot" onclick="recuperar()">
+¿Olvidaste tu contraseña?
+</div>
+
+</div>
+
+<script src="Iniciodesecion.Js"></script>
+
+</body>
+</html>
