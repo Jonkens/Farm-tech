@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Salud del Ganado</title>
+<link rel="stylesheet" href="salud.CSS">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- PANEL IZQUIERDO -->
+<div class="panel">
+
+<h2>🐄 Registro de Salud</h2>
+
+<input type="text" id="nombre" placeholder="Nombre del animal">
+
+<input type="number" id="peso" placeholder="Peso (kg)">
+
+<input type="text" id="temperatura" placeholder="Temperatura (°C)">
+
+<select id="estado">
+<option>Estado de salud</option>
+<option>Excelente</option>
+<option>Bueno</option>
+<option>Regular</option>
+<option>Enfermo</option>
+<option>En observación</option>
+</select>
+
+<select id="enfermedad">
+<option>Enfermedad detectada</option>
+<option>Ninguna</option>
+<option>Fiebre</option>
+<option>Parásitos</option>
+<option>Infección</option>
+<option>Problemas digestivos</option>
+</select>
+
+<input type="text" id="vacuna" placeholder="Vacuna aplicada">
+
+<input type="text" id="tratamiento" placeholder="Tratamiento">
+
+<textarea id="obs" placeholder="Observaciones"></textarea>
+
+<div class="botones">
+
+<button class="guardar" onclick="guardarSalud()">Guardar</button>
+<button class="volver" onclick="volver()">Volver</button>
+
+</div>
+
+</div>
+
+<!-- PANEL DERECHO -->
+<div class="panel">
+
+<h2>📊 Historial de Salud</h2>
+
+<input type="text" id="buscar" placeholder="Buscar animal..." onkeyup="buscar()">
+
+<table id="tablaSalud">
+
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Peso</th>
+<th>Temp</th>
+<th>Estado</th>
+<th>Enfermedad</th>
+<th>Vacuna</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="salud.Js"></script>
+
+</body>
+</html>

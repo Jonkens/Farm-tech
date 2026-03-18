@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Registro de Animales</title>
+<link rel="stylesheet" href="animales.CSs">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- PANEL IZQUIERDO -->
+<div class="panel">
+
+<h2>Registro de Animales</h2>
+
+<label>Nombre:</label>
+<input type="text" id="nombre">
+
+<label>Peso:</label>
+<input type="number" id="peso">
+
+<label>Raza:</label>
+<input type="text" id="raza">
+
+<label>Edad:</label>
+<input type="text" id="edad">
+
+<label>¿Tiene hijos?</label>
+
+<div class="radio">
+<input type="radio" name="hijos" value="Si"> Si
+<input type="radio" name="hijos" value="No"> No
+</div>
+
+<label>Potrero:</label>
+
+<select id="potrero">
+<option>Seleccionar establo</option>
+<option>Establo 1</option>
+<option>Establo 2</option>
+<option>Establo 3</option>
+<option>Establo 4</option>
+<option>Establo 5</option>
+</select>
+
+<div class="botones">
+
+<button class="guardar" onclick="guardarAnimal()">Guardar</button>
+
+<button class="editar" onclick="editarAnimal()">Editar</button>
+
+<button class="eliminar" onclick="eliminarAnimal()">Eliminar</button>
+
+<button class="salud" onclick="abrirSalud()">Registro de Salud</button>
+
+</div>
+
+</div>
+
+<!-- PANEL DERECHO -->
+
+<div class="panel">
+
+<h2>Animales Registrados</h2>
+
+<input type="text" id="buscar" placeholder="Buscar Animal" onkeyup="buscarAnimal()">
+
+<table id="tabla">
+
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Raza</th>
+<th>Peso</th>
+<th>Edad</th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="animales.Js"></script>
+
+</body>
+</html>
