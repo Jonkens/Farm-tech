@@ -295,7 +295,6 @@ $tabLabel = [
                 </select>
             </div>
 
-            <!-- Botón registrar (sin campo cantidad) -->
             <button name="registrar_sacrificio" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg w-full transition">
                 <i class="fas fa-gavel mr-2"></i> Registrar sacrificio
             </button>
@@ -303,10 +302,24 @@ $tabLabel = [
     </div>
 </div>
 
+<!-- Historial de sacrificios (fuera del grid anterior) -->
+<div class="bg-white rounded-xl shadow-md p-5 mt-6">
+    <h2 class="text-lg font-bold text-gray-800 mb-3">Historial de sacrificios</h2>
+    <?php foreach ($historial as $s): ?>
+        <div class="p-2 border-b">
+            <p class="text-sm font-medium"><?= htmlspecialchars($s['slaughter_date']) ?></p>
+            <p class="text-xs text-gray-500"><?= htmlspecialchars($s['animal_type']) ?> - <?= $s['quantity'] ?> ud.</p>
+        </div>
+    <?php endforeach; ?>
+    <?php if (empty($historial)): ?>
+        <p class="text-gray-500 italic">No hay registros aún</p>
+    <?php endif; ?>
+</div>
+
 <!-- JavaScript para filtrar animales según el tipo seleccionado -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Datos de animales desde PHP (convertidos a JSON)
+        // Datos de animales desde PHP (excluyendo ya sacrificados)
         const animales = <?= json_encode(array_map(function($a) {
             return ['id' => $a['id'], 'name' => $a['name'], 'tipo_id' => $a['animal_type_id'] ?? null];
         }, $animalesSelect)) ?>;
@@ -336,11 +349,6 @@ $tabLabel = [
 
         tipoSelect.addEventListener('change', filtrarAnimales);
     });
-    <div class="bg-white rounded-xl shadow-md p-5"><h2 class="text-lg font-bold text-gray-800 mb-3">Historial</h2>
-            <?php foreach ($historial as $s): ?>
-            <div class="p-2 border-b"><p class="text-sm font-medium"><?= htmlspecialchars($s['slaughter_date']) ?></p><p class="text-xs text-gray-500"><?= htmlspecialchars($s['animal_type']) ?> - <?= $s['quantity'] ?> ud.</p></div>
-            <?php endforeach; ?>
-        </div>
 </script>
 <?php endif; ?>
 
