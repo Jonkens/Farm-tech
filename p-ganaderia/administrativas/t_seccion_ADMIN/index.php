@@ -81,17 +81,16 @@ if (isset($_GET['eliminar_leche'])) {
     eliminarLeche($pdo, (int)$_GET['id']);
     redirectWithMessage("Registro eliminado", "success", "leche", $pages['leche']);
 }
-
 // Sacrificios
-/*if (isset($_POST['marcar_sacrificio'])) {
-    marcarAnimalSacrificado($pdo, (int)$_POST['id']);
-    redirectWithMessage("Animal marcado", "success", "sacrificios", $pages['sacrificios']);
-}*/
+/*
 if (isset($_POST['registrar_sacrificio'])) {
     registrarSacrificio($pdo, (int)$_POST['animal_id'], (int)$_POST['animal_type_id'], (int)$_POST['quantity']);
     redirectWithMessage("Sacrificio registrado", "success", "sacrificios", $pages['sacrificios']);
+}*/
+if (isset($_POST['registrar_sacrificio'])) {
+    registrarSacrificio($pdo, (int)$_POST['animal_id'], (int)$_POST['animal_type_id']);
+    redirectWithMessage("Sacrificio registrado", "success", "sacrificios", $pages['sacrificios']);
 }
-
 // Huevos
 if (isset($_POST['agregar_huevos'])) {
     insertarHuevos($pdo, $_POST['production_date'], (int)$_POST['quantity']);
