@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe Medico - INF-20260612233958</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #2d3748;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.page {
+    background: white;
+    max-width: 760px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+}
+
+/* ── Header ── */
+.header {
+    background: #1a6b3c;
+    padding: 28px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-box { display: flex; align-items: center; gap: 14px; }
+.logo-icon {
+    width: 50px; height: 50px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -1px;
+}
+.logo-nombre { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+.logo-sub    { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+.header-info { text-align: right; }
+.informe-num  { font-size: 20px; font-weight: 700; }
+.informe-fecha{ font-size: 12px; color: rgba(255,255,255,0.70); margin-top: 3px; }
+
+/* Barra decorativa */
+.deco-bar { height: 5px; background: linear-gradient(90deg, #2d9e5f 0%, #8bc34a 55%, #ffc107 100%); }
+
+/* ── Content ── */
+.content { padding: 32px 40px; }
+
+/* Info cards (vet + granja) */
+.info-grid { display: flex; gap: 16px; margin-bottom: 24px; }
+.info-card {
+    flex: 1;
+    border: 1.5px solid #e6f4ec;
+    border-radius: 10px;
+    padding: 16px 18px;
+    background: #fafffe;
+}
+.info-card-title {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.09em; color: #2d9e5f;
+    padding-bottom: 8px; border-bottom: 1.5px solid #e6f4ec; margin-bottom: 12px;
+}
+.info-row-item { display: flex; gap: 6px; margin-bottom: 6px; }
+.info-key { font-size: 11px; color: #718096; font-weight: 700; min-width: 78px; }
+.info-val { font-size: 12px; color: #2d3748; }
+
+/* Animal banner */
+.animal-banner {
+    background: #f0faf5;
+    border: 1.5px solid #c6e8d5;
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+.animal-tipo-label {
+    background: #1a6b3c;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.animal-info { flex: 1; }
+.animal-nombre { font-size: 17px; font-weight: 700; color: #1a6b3c; margin-bottom: 3px; }
+.animal-id     { font-size: 12px; color: #718096; margin-bottom: 8px; }
+.badges { display: flex; gap: 7px; flex-wrap: wrap; }
+.badge {
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: 100px;
+    font-size: 11px; font-weight: 700;
+    background: white; border: 1.5px solid #c6e8d5; color: #1a6b3c;
+}
+.estado-tag {
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-size: 12px; font-weight: 700;
+    background: #fefce8;
+    color: #ca8a04;
+    border: 2px solid #ca8a04;
+    white-space: nowrap;
+}
+
+/* Vitales */
+.vitals { display: flex; gap: 12px; margin-bottom: 24px; }
+.vital-box {
+    flex: 1;
+    background: #f0faf5;
+    border: 1.5px solid #c6e8d5;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+}
+.vital-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #718096; margin-bottom: 5px; }
+.vital-value { font-size: 18px; font-weight: 700; color: #1a6b3c; }
+
+/* Secciones clinicas */
+.section { margin-bottom: 20px; }
+.section-title {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.09em; color: #1a6b3c;
+    padding-bottom: 7px; border-bottom: 2px solid #e6f4ec; margin-bottom: 10px;
+}
+.section-text { font-size: 13px; color: #4a5568; line-height: 1.65; }
+
+/* Diagnostico destacado */
+.dx-box {
+    background: #f0faf5;
+    border-left: 4px solid #2d9e5f;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+}
+.dx-text { font-size: 13px; color: #1a6b3c; font-weight: 600; line-height: 1.65; }
+
+/* Tabla medicamentos */
+.med-table { width: 100%; border-collapse: collapse; border: 1.5px solid #c6e8d5; border-radius: 10px; overflow: hidden; }
+.med-table th {
+    background: #1a6b3c; color: white;
+    padding: 10px 14px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; text-align: left;
+}
+
+/* Footer */
+.footer {
+    background: #f8fffe;
+    border-top: 2px solid #e6f4ec;
+    padding: 22px 40px;
+    display: flex;
+    gap: 0;
+}
+.footer-col { flex: 1; text-align: center; padding: 0 10px; }
+.footer-col:not(:last-child) { border-right: 1px solid #e6f4ec; }
+.footer-label { font-size: 10px; color: #718096; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+.footer-val   { font-size: 13px; color: #2d3748; font-weight: 600; }
+.firma-linea  { border-top: 1.5px solid #c6e8d5; padding-top: 6px; margin-top: 24px; }
+
+/* Botones (solo pantalla, no impresion) */
+.btn-bar {
+    max-width: 760px; margin: 0 auto 16px;
+    display: flex; gap: 10px; justify-content: flex-end;
+}
+.btn-print {
+    background: #1a6b3c; color: white;
+    padding: 11px 24px; border: none; border-radius: 8px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.btn-close {
+    background: #f1f5f9; color: #64748b;
+    padding: 11px 22px; border: none; border-radius: 8px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+}
+
+/* Print */
+@media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .btn-bar { display: none; }
+}
+@page { margin: 10mm; }
+</style>
+</head>
+<body>
+
+<!-- Barra de botones (solo visible en pantalla) -->
+<div class="btn-bar">
+    <button class="btn-print" onclick="window.print()">&#128438; Imprimir / Guardar como PDF</button>
+    <button class="btn-close" onclick="window.close()">&#x2715; Cerrar</button>
+</div>
+
+<div class="page">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-box">
+            <div class="logo-icon">VF</div>
+            <div>
+                <div class="logo-nombre">VetFarm</div>
+                <div class="logo-sub">Sistema de Informes Medicos Veterinarios</div>
+            </div>
+        </div>
+        <div class="header-info">
+            <div class="informe-num">INF-20260612233958</div>
+            <div class="informe-fecha">Fecha: 12/06/2026</div>
+        </div>
+    </div>
+    <div class="deco-bar"></div>
+
+    <div class="content">
+
+        <!-- Veterinario y Granja -->
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-card-title">Veterinario Responsable</div>
+                <div class="info-row-item"><span class="info-key">Nombre:</span><span class="info-val">w</span></div><div class="info-row-item"><span class="info-key">Clinica:</span><span class="info-val">w</span></div>
+            </div>
+            <div class="info-card">
+                <div class="info-card-title">Datos de la Granja</div>
+                <div class="info-row-item"><span class="info-key">Granja:</span><span class="info-val">w</span></div><div class="info-row-item"><span class="info-key">Propietario:</span><span class="info-val">w</span></div><div class="info-row-item"><span class="info-key">Direccion:</span><span class="info-val">w</span></div>
+            </div>
+        </div>
+
+        <!-- Animal -->
+        <div class="animal-banner">
+            <div class="animal-tipo-label">[AVIAR]</div>
+            <div class="animal-info">
+                <div class="animal-nombre">Aviar &mdash; w</div>
+                <div class="animal-id">ID / Arete: w</div>
+                <div class="badges"><span class="badge">Edad: 2</span><span class="badge">Sexo: Macho</span><span class="badge">Peso: 45 kg</span></div>
+            </div>
+            <div class="estado-tag">REGULAR</div>
+        </div>
+
+        <!-- Signos Vitales -->
+        
+        <div class="vitals">
+            <div class="vital-box">
+                <div class="vital-label">TEMPERATURA</div>
+                <div class="vital-value">45</div>
+            </div>
+            <div class="vital-box">
+                <div class="vital-label">FREC. CARDIACA</div>
+                <div class="vital-value">82</div>
+            </div>
+            <div class="vital-box">
+                <div class="vital-label">FREC. RESPIRATORIA</div>
+                <div class="vital-value">16</div>
+            </div>
+        </div>
+
+        <!-- Motivo -->
+        <div class="section"><div class="section-title">MOTIVO DE CONSULTA</div><p class="section-text">wr</p></div>
+
+        <!-- Sintomas -->
+        <div class="section"><div class="section-title">SINTOMAS OBSERVADOS</div><p class="section-text">wer</p></div>
+
+        <!-- Diagnostico (siempre presente) -->
+        <div class="section">
+            <div class="section-title">Diagnostico</div>
+            <div class="dx-box">
+                <div class="dx-text">wer</div>
+            </div>
+        </div>
+
+        <!-- Tratamiento -->
+        <div class="section"><div class="section-title">TRATAMIENTO INDICADO</div><p class="section-text">wer</p></div>
+
+        <!-- Medicamentos -->
+        <div class="section">
+            <div class="section-title">Medicamentos Recetados</div>
+            <table class="med-table">
+                <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Dosis</th>
+                        <th>Frecuencia / Duracion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:#f8fffe;"><td style="padding:9px 14px;border-bottom:1px solid #e6f4ec;">c2rrer</td><td style="padding:9px 14px;border-bottom:1px solid #e6f4ec;font-weight:600;color:#1a6b3c;">12</td><td style="padding:9px 14px;border-bottom:1px solid #e6f4ec;">24 56</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="section"><div class="section-title">OBSERVACIONES Y RECOMENDACIONES</div><p class="section-text">dfs</p></div>
+
+    </div><!-- /content -->
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-col">
+            <div class="footer-label">Proximo Control</div>
+            <div class="footer-val" style="color:#1a6b3c;">26/06/2026</div>
+        </div>
+        <div class="footer-col">
+            <div class="footer-label">Firma del Veterinario</div>
+            <div class="firma-linea">
+                <div class="footer-val" style="font-style:italic;">w</div>
+            </div>
+        </div>
+        <div class="footer-col">
+            <div class="footer-label">Generado por</div>
+            <div class="footer-val">VetFarm Sistema</div>
+            <div style="font-size:11px;color:#a0aec0;margin-top:3px;">12/06/2026</div>
+        </div>
+    </div>
+
+</div><!-- /page -->
+
+</body>
+</html>

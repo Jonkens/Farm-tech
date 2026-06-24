@@ -1,0 +1,20 @@
+{
+    "name": "lenovo/farm-tech",
+    "autoload": {
+        "psr-4": {
+            "Lenovo\\FarmTech\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "óscar-palma",
+            "email": "oscarfrancisco.a.p@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1",
+        "endroid/qr-code": "^5.0",
+        "phpmailer/phpmailer": "^7.1",
+        "google/apiclient": "*"
+    }
+}
